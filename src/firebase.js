@@ -39,8 +39,8 @@ const signup = async (name, email, password) => {
       email,
     });
   } catch (error) {
-    console.log(error, error.message);
-    toast.error(error.code);
+    toast.error(error.code.split("/")[1].split("-").join(" "));
+    console.log("this is an error");
   }
 };
 
@@ -48,10 +48,10 @@ const login = async (email, password) => {
   if (!email || !password) return;
   try {
     signInWithEmailAndPassword(auth, email, password).catch((error) => {
-      toast.info("error");
+      toast.error(error.code.split("/")[1].split("-").join(" "));
     });
   } catch (error) {
-    console.log("error, error.message");
+    console.log(error);
   }
 };
 
